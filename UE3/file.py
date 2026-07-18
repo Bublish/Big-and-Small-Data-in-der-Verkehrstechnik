@@ -93,6 +93,11 @@ def run_with_tls_control():
     avg_waiting_time = sum(waiting.values()) / len(waiting) if waiting else 0
     print(f"Average waiting time: {avg_waiting_time:.2f} seconds")
 
+    #average waiting time for vehicles from the north (route "nns", ids "down_*")
+    north_waiting = [wt for vid, wt in waiting.items() if vid.startswith("down_")]
+    avg_waiting_north = sum(north_waiting) / len(north_waiting) if north_waiting else 0
+    print(f"Average waiting time (north): {avg_waiting_north:.2f} seconds")
+
     traci.close()
     sys.stdout.flush()
     
